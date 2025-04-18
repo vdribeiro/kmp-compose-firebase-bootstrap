@@ -1,0 +1,43 @@
+CREATE TABLE IF NOT EXISTS SessionHash (
+    userId TEXT NOT NULL PRIMARY KEY,
+    hash TEXT NOT NULL,
+    token TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Session (
+    app TEXT NOT NULL DEFAULT "App" PRIMARY KEY,
+    userId TEXT
+);
+
+INSERT INTO Session (app, userId)
+VALUES ("App", NULL);
+
+upsertSessionHash:
+INSERT OR REPLACE INTO SessionHash VALUES ?;
+
+upsertSession:
+INSERT OR REPLACE INTO Session (app, userId)
+VALUES ("App", ?);
+
+getUserToken:
+SELECT SessionHash.token FROM SessionHash
+WHERE SessionHash.userId = :userId;
+
+getUserBySessionHash:
+SELECT DISTINCT
+    User.id,
+    User.email,
+    User.jobId,
+    User.name,
+    User.photoUrl,
+    User.type,
+    User.modifiedAt,
+    User.lastSignInAt
+FROM User
+LEFT JOIN SessionHash ON User.id = SessionHash.userId
+WHERE SessionHash.hash = :hash;
+
+getLoggedUserId:
+SELECT DISTINCT User.id FROM User
+LEFT JOIN Session ON User.id = Session.userId
+WHERE Session.app = "App";

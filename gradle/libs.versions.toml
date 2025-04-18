@@ -1,0 +1,71 @@
+[versions]
+
+applicationId = "com.example.bootstrap"
+agp = "8.9.1"
+google-services = "4.4.2"
+kotlin = "2.1.20"
+kotlinx-serialization = "1.8.0"
+kotlinx-datetime = "0.6.2"
+compose-multiplatform = "1.7.3"
+sqldelight = "2.0.2"
+firebase = "33.12.0"
+crashlytics = "3.0.3"
+android-minSdk = "26"
+android-targetSdk = "35"
+android-compileSdk = "35"
+androidx-startup = "1.2.0"
+androidx-splashscreen = "1.0.1"
+androidx-activity-compose = "1.10.1"
+
+[plugins]
+googleServices = { id = "com.google.gms.google-services", version.ref = "google-services" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+
+[libraries]
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+sqldelight-android = { group = "app.cash.sqldelight", name = "android-driver", version.ref = "sqldelight" }
+sqldelight-native = { group = "app.cash.sqldelight", name = "native-driver", version.ref = "sqldelight" }
+sqldelight-primitives = { group = "app.cash.sqldelight", name = "primitive-adapters", version.ref = "sqldelight" }
+sqldelight-coroutines = { group = "app.cash.sqldelight", name = "coroutines-extensions", version.ref = "sqldelight" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase" }
+firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-crashlytics-ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-config-ktx = { group = "com.google.firebase", name = "firebase-config-ktx" }
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx" }
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx" }
+androidx-startup = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidx-startup" }
+androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-splashscreen" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+
+[bundles]
+common = [
+    "sqldelight-primitives",
+    "sqldelight-coroutines",
+    "kotlinx-serialization",
+    "kotlinx-datetime",
+]
+
+android = [
+    "androidx-startup",
+    "androidx-splashscreen",
+    "androidx-activity-compose",
+    "sqldelight-android",
+    "firebase-analytics-ktx",
+    "firebase-crashlytics-ktx",
+    "firebase-config-ktx",
+    "firebase-auth-ktx",
+    "firebase-firestore-ktx",
+    "firebase-storage-ktx",
+    "firebase-messaging-ktx",
+]

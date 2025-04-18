@@ -1,0 +1,51 @@
+import com.hybris.tlv.datetime.DateTime;
+import com.hybris.tlv.scheduler.domain.JobState;
+import kotlin.Int;
+
+CREATE TABLE IF NOT EXISTS ScheduledJob (
+    id TEXT NOT NULL PRIMARY KEY,
+    utc TEXT AS DateTime NOT NULL,
+    type TEXT NOT NULL,
+    action INTEGER AS Int NOT NULL,
+    tag TEXT NOT NULL,
+    userId TEXT,
+    params TEXT NOT NULL,
+    state TEXT AS JobState NOT NULL,
+    attempt INTEGER AS Int NOT NULL DEFAULT 0,
+    nextId TEXT
+);
+
+upsertScheduledJob:
+INSERT OR REPLACE INTO ScheduledJob VALUES ?;
+
+getRunningJobs:
+SELECT * FROM ScheduledJob
+WHERE ScheduledJob.state = "RUNNING";
+
+getPendingJobs:
+SELECT * FROM ScheduledJob
+WHERE ScheduledJob.state = "PENDING";
+
+getActiveJobsOfGroup:
+SELECT * FROM ScheduledJob
+WHERE ScheduledJob.state IN ("PENDING","RUNNING")
+AND ScheduledJob.tag = :group
+ORDER BY ScheduledJob.action ASC, ScheduledJob.rowid ASC, ScheduledJob.utc ASC;
+
+getFirstScheduledJobOfGroup:
+SELECT * FROM ScheduledJob
+WHERE ScheduledJob.state = "PENDING"
+AND ScheduledJob.tag = :group
+ORDER BY ScheduledJob.action ASC, ScheduledJob.rowid ASC, ScheduledJob.utc ASC
+LIMIT 1;
+
+getNextScheduledJob:
+SELECT * FROM ScheduledJob
+WHERE ScheduledJob.id = (
+    SELECT ScheduledJob.nextId FROM ScheduledJob
+    WHERE ScheduledJob.id = :id
+);
+
+getJob:
+SELECT * FROM ScheduledJob
+WHERE ScheduledJob.id = :id;

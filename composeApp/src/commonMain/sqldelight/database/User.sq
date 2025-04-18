@@ -1,0 +1,27 @@
+import com.hybris.tlv.datetime.DateTime;
+import com.hybris.tlv.usecase.session.model.domain.UserType;
+
+CREATE TABLE IF NOT EXISTS User (
+    id TEXT NOT NULL PRIMARY KEY,
+    email TEXT,
+    jobId TEXT,
+    name TEXT,
+    photoUrl TEXT,
+    type TEXT AS UserType NOT NULL,
+    modifiedAt TEXT AS DateTime NOT NULL,
+    lastSignInAt TEXT AS DateTime
+);
+
+truncateUsers:
+DELETE FROM User;
+
+upsertUser:
+INSERT OR REPLACE INTO User VALUES ?;
+
+getUser:
+SELECT DISTINCT * FROM User
+WHERE User.id = :id;
+
+getUsers:
+SELECT DISTINCT * FROM User
+WHERE User.id IN :ids;
