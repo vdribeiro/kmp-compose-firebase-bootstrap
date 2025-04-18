@@ -1,11 +1,11 @@
 package com.example.bootstrap.firebase.storage
 
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.example.bootstrap.file.getNameAndExtensionFromUrl
 import com.example.bootstrap.firebase.Firebase
 import com.example.bootstrap.firebase.tryAwait
 import com.example.bootstrap.firebase.tryAwaitWithResult
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.io.File
 import java.io.FileInputStream
 

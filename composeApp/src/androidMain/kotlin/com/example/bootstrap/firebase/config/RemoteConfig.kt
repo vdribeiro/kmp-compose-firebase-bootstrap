@@ -1,10 +1,10 @@
 package com.example.bootstrap.firebase.config
 
+import com.example.bootstrap.firebase.Firebase
+import com.example.bootstrap.firebase.tryAwait
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
-import com.example.bootstrap.firebase.Firebase
-import com.example.bootstrap.firebase.tryAwait
 
 internal actual val Firebase.remoteConfig: RemoteConfig get() = RemoteConfig(remoteConfig = FirebaseRemoteConfig.getInstance())
 

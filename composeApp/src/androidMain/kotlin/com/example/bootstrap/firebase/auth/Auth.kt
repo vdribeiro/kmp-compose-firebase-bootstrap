@@ -1,12 +1,12 @@
 package com.example.bootstrap.firebase.auth
 
 import androidx.core.net.toUri
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.example.bootstrap.firebase.Firebase
 import com.example.bootstrap.firebase.tryAwait
 import com.example.bootstrap.firebase.tryAwaitWithResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow

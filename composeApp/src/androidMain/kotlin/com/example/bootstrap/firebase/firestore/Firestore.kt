@@ -1,9 +1,9 @@
 package com.example.bootstrap.firebase.firestore
 
-import com.google.firebase.firestore.FirebaseFirestore
 import com.example.bootstrap.firebase.Firebase
 import com.example.bootstrap.firebase.tryAwait
 import com.example.bootstrap.firebase.tryAwaitWithResult
+import com.google.firebase.firestore.FirebaseFirestore
 
 internal actual val Firebase.firestore: Firestore get() = Firestore(firestore = FirebaseFirestore.getInstance())
 
